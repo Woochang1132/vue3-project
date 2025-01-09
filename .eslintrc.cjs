@@ -11,10 +11,10 @@ module.exports = {
   env: {
     'vue/setup-compiler-macros': true,
   },
-	parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module',
-	},
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
   rules: {
     'prettier/prettier': [
       'error',
@@ -26,7 +26,7 @@ module.exports = {
         printWidth: 80,
         bracketSpacing: true,
         arrowParens: 'avoid',
-				endOfLine: 'auto', 
+        endOfLine: 'auto',
       },
     ],
   },
