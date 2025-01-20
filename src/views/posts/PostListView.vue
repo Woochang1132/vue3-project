@@ -8,6 +8,7 @@
           :title="post.title"
           :content="post.content"
           :created-at="post.createdAt"
+          @click="goPage(post.id)"
         ></PostItem>
       </div>
     </div>
@@ -18,13 +19,19 @@
 import PostItem from '@/components/posts/PostItem.vue';
 import { getPosts } from '@/api/posts';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const posts = ref([]);
 const fetchPosts = () => {
   posts.value = getPosts();
 };
 
 fetchPosts();
+
+const goPage = id => {
+  router.push(`/posts/${id}`);
+};
 </script>
 
 <style lang="scss" scoped></style>
