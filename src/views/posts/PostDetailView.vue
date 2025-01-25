@@ -11,19 +11,29 @@
       <div class="col-auto">
         <button class="btn btn-outline-dark">다음글</button>
       </div>
+      <div class="col-auto me-auto"></div>
       <div class="col-auto">
-        <button class="btn btn-outline-dark">목록</button>
+        <button class="btn btn-outline-dark" @click="goListPage">목록</button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-outline-dark">수정</button>
+        <button class="btn btn-outline-primary" @click="goEditPage">
+          수정
+        </button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-outline-dark">삭제</button>
+        <button class="btn btn-outline-danger">삭제</button>
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goListPage = () => router.push({ name: 'PostList' });
+const goEditPage = () => router.push({ name: 'PostEidt' });
+</script>
 
 <style lang="scss" scoped></style>
