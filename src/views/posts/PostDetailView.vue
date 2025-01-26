@@ -28,12 +28,14 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
+const route = useRoute();
 const router = useRouter();
+const id = route.params.id;
 
 const goListPage = () => router.push({ name: 'PostList' });
-const goEditPage = () => router.push({ name: 'PostEidt' });
+const goEditPage = () => router.push({ name: 'PostEidt', params: { id } });
 </script>
 
 <style lang="scss" scoped></style>
