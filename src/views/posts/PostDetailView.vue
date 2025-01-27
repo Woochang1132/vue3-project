@@ -35,7 +35,7 @@ const router = useRouter();
 const id = route.params.id;
 
 const goListPage = () => router.push({ name: 'PostList' });
-const goEditPage = () => router.push({ name: 'PostEidt', params: { id } });
+const goEditPage = () => router.push({ name: 'PostEdit', params: { id } });
 </script>
 
 <style lang="scss" scoped></style>
