@@ -37,6 +37,18 @@ const router = useRouter();
 const id = route.params.id;
 const form = ref({});
 
+/* 
+  ref
+  장) 객체 할당이 가능하다
+  장) primitive, reference 타입 선언이 다 가능하기 때문에 일관성 유지 가능
+  단) from.value.title, form.value.content
+
+  reactive -> 객체, 배열 reference 타입 선언만 가능하다
+  장) from.title, form.content
+  단) 객체 할당 불가능
+
+*/
+
 const fetchPost = () => {
   const data = getPostById(id);
   form.value = { ...data };
