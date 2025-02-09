@@ -84,7 +84,7 @@ const posts = ref([]);
 const params = ref({
   _sort: 'createdAt',
   _order: 'desc',
-  _page: 3,
+  _page: 1,
   _limit: '3',
   title_like: '',
 });
