@@ -14,7 +14,6 @@
       <button type="button" class="btn btn-secondary" @click="closeModal">
         닫기
       </button>
-      <button type="button" class="btn btn-primary">Save changes</button>
     </template>
   </AppModal>
 </template>
