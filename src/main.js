@@ -7,8 +7,12 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from '@/router';
 import globalComponents from './plugins/global-components';
+import globalDirectives from './plugins/global-directives';
+// import focus from '@/directives/focus';
 
 const app = createApp(App);
+app.use(globalDirectives);
+// app.directive('focus', focus);
 app.use(globalComponents);
 app.use(router);
 app.mount('#app');
