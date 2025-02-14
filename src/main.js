@@ -6,8 +6,16 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from '@/router';
+import funcPlugins from './plugins/func';
+import objPlugins from './plugins/obj';
+import person from './plugins/person';
 
-createApp(App).use(router).mount('#app');
+const app = createApp(App);
+app.use(funcPlugins);
+app.use(person, { name: '홍길동' });
+app.use(objPlugins, { name: '옵션으로 전달되는지 여부를 확인한다.' });
+app.use(router);
+app.mount('#app');
 
 /* 환경변수 확인용 
 console.log('import.meta.env.MODE', import.meta.env.MODE);
