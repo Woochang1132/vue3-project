@@ -8,9 +8,6 @@
     <AppGrid :items="items" v-slot="{ item }" col-class="col-6">
       <AppCard>{{ item }}</AppCard>
     </AppGrid>
-    <hr class="my-4" />
-    <h2>{{ $person.name }}</h2>
-    <button class="btn btn-primary" @click="person.say">click person</button>
   </div>
 </template>
 
@@ -25,9 +22,9 @@ export default {
 
 <script setup>
 import { useRouter } from 'vue-router';
-import AppGrid from '@/components/AppGrid.vue';
-import AppCard from '@/components/AppCard.vue';
-import { inject, ref } from 'vue';
+// import AppGrid from '@/components/app/AppGrid.vue';
+// import AppCard from '@/components/app/AppCard.vue';
+import { ref } from 'vue';
 
 const router = useRouter();
 const goAboutPage = () => {
@@ -35,8 +32,6 @@ const goAboutPage = () => {
 };
 
 const items = ref(['사과', '딸기', '포도', '바나나']);
-const person = inject('person');
-console.log('person.name >>', person.name);
 </script>
 
 <style lang="scss" scoped></style>
