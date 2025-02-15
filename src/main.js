@@ -8,11 +8,13 @@ import App from './App.vue';
 import router from '@/router';
 import globalComponents from './plugins/global-components';
 import globalDirectives from './plugins/global-directives';
+import dayjsPlugin from './plugins/dayjs';
 // import focus from '@/directives/focus';
 
 const app = createApp(App);
 app.use(globalDirectives);
 // app.directive('focus', focus);
+app.use(dayjsPlugin);
 app.use(globalComponents);
 app.use(router);
 app.mount('#app');
