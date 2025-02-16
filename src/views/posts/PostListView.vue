@@ -7,23 +7,28 @@
       v-model:limit="params._limit"
     />
     <hr class="my-4" />
-    <AppGrid :items="posts">
-      <template v-slot="{ item }">
-        <PostItem
-          :title="item.title"
-          :content="item.content"
-          :created-at="item.createdAt"
-          @click="goPage(item.id)"
-          @modal="openModal(item)"
-        ></PostItem>
-      </template>
-    </AppGrid>
 
-    <AppPagination
-      :current-page="params._page"
-      :page-count="pageCount"
-      @page="page => (params._page = page)"
-    />
+    <AppLoading v-if="loading"></AppLoading>
+    <AppError v-else-if="error" :message="error.message"></AppError>
+    <template v-else>
+      <AppGrid :items="posts">
+        <template v-slot="{ item }">
+          <PostItem
+            :title="item.title"
+            :content="item.content"
+            :created-at="item.createdAt"
+            @click="goPage(item.id)"
+            @modal="openModal(item)"
+          ></PostItem>
+        </template>
+      </AppGrid>
+
+      <AppPagination
+        :current-page="params._page"
+        :page-count="pageCount"
+        @page="page => (params._page = page)"
+      />
+    </template>
     <Teleport to="#modal">
       <PostModal
         v-model="show"
@@ -52,9 +57,13 @@ import PostModal from './PostModal.vue';
 import { getPosts } from '@/api/posts';
 import { computed, ref, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
+import AppLoading from '@/components/app/AppLoading.vue';
+import AppError from '@/components/app/AppError.vue';
 
 const router = useRouter();
 const posts = ref([]);
+const error = ref(null);
+const loading = ref(false);
 const params = ref({
   _sort: 'createdAt',
   _order: 'desc',
@@ -70,11 +79,15 @@ const pageCount = computed(() =>
 );
 const fetchPosts = async () => {
   try {
+    loading.value = true;
     const { data, headers } = await getPosts(params.value);
     posts.value = data;
     totalCount.value = headers['x-total-count'];
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
+    error.value = err;
+  } finally {
+    loading.value = false;
   }
 };
 
