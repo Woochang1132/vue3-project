@@ -35,6 +35,18 @@
       "content": null,
       "createdAt": 1739247358847,
       "id": 15
+    },
+    {
+      "title": "composable 구성 후 게시글을 수정합니다.",
+      "content": null,
+      "createdAt": 1739685652744,
+      "id": 16
+    },
+    {
+      "title": "composable 함수 등록 후 게시글 등록을 진행합니다.",
+      "content": null,
+      "createdAt": 1739686148764,
+      "id": 17
     }
   ]
 }
