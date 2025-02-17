@@ -40,6 +40,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { getPostById, updatePost } from '@/api/posts';
 import PostForm from '@/components/posts/PostForm.vue';
 import { useAlert } from '@/composables/alert';
+import { useAxios } from '@/hooks/useAxios';
 // import AppAlert from '@/components/app/AppAlert.vue';
 
 const { vAlert, vSuccess } = useAlert();
@@ -47,12 +48,7 @@ const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
 
-const form = ref({
-  title: null,
-  content: null,
-});
-const error = ref(null);
-const loading = ref(false);
+const { error, loading, data: form } = useAxios(`/posts/${id}`);
 
 const fetchPost = async () => {
   try {

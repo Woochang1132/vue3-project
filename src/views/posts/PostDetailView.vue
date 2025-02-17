@@ -47,50 +47,17 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import { deletePost, getPostById } from '@/api/posts';
+import { deletePost } from '@/api/posts';
 import { ref } from 'vue';
+import { useAxios } from '@/hooks/useAxios';
 
 const props = defineProps({
   id: [String, Number],
 });
 
 const router = useRouter();
-// const id = route.params.id;
-const post = ref({});
-const error = ref(null);
-const loading = ref(false);
 
-/* 
-  ref
-  장) 객체 할당이 가능하다
-  장) primitive, reference 타입 선언이 다 가능하기 때문에 일관성 유지 가능
-  단) from.value.title, form.value.content
-
-  reactive -> 객체, 배열 reference 타입 선언만 가능하다
-  장) from.title, form.content
-  단) 객체 할당 불가능
-
-*/
-
-const fetchPost = async () => {
-  try {
-    loading.value = true;
-    const { data } = await getPostById(props.id);
-    setPost(data);
-  } catch (err) {
-    error.value = err;
-  } finally {
-    loading.value = false;
-  }
-};
-
-const setPost = ({ title, content, createdAt }) => {
-  post.value.title = title;
-  post.value.content = content;
-  post.value.createdAt = createdAt;
-};
-
-fetchPost();
+const { error, loading, data: post } = useAxios(`/posts/${props.id}`);
 
 const removeError = ref(null);
 const removeLoading = ref(false);

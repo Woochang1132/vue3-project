@@ -73,7 +73,7 @@ const {
   data: posts,
   error,
   loading,
-} = useAxios('/posts', { method: 'get', params });
+} = useAxios('/posts', { params });
 // pagination
 const totalCount = computed(
   () => response.value?.headers['x-total-count'] || 0,
@@ -81,25 +81,6 @@ const totalCount = computed(
 const pageCount = computed(() =>
   Math.ceil(totalCount.value / params.value._limit),
 );
-
-console.log('response >>>', response);
-/* 
-const fetchPosts = async () => {
-  try {
-    loading.value = true;
-    const { data, headers } = await getPosts(params.value);
-    posts.value = data;
-    totalCount.value = headers['x-total-count'];
-  } catch (err) {
-    console.error(err);
-    error.value = err;
-  } finally {
-    loading.value = false;
-  }
-}; 
-*/
-
-// watchEffect(fetchPosts);
 const goPage = id => {
   // router.push(`/posts/${id}`);
   router.push({
