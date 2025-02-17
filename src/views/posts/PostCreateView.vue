@@ -32,11 +32,11 @@
 </template>
 
 <script setup>
-import { createPost } from '@/api/posts';
 import router from '@/router';
 import { ref } from 'vue';
 import PostForm from '@/components/posts/PostForm.vue';
 import { useAlert } from '@/composables/alert';
+import { useAxios } from '@/hooks/useAxios';
 
 const { vAlert, vSuccess } = useAlert();
 
@@ -44,9 +44,32 @@ const form = ref({
   title: null,
   content: null,
 });
-const loading = ref(false);
-const error = ref(null);
+
+const { error, loading, execute } = useAxios(
+  '/posts',
+  {
+    method: 'post',
+  },
+  {
+    immediate: false,
+    onSuccess: () => {
+      vSuccess('등록이 완료되었습니다');
+      router.push({ name: 'PostList' });
+    },
+    onError: err => {
+      vAlert(err.message);
+    },
+  },
+);
+
 const save = async () => {
+  execute({
+    ...form.value,
+    createdAt: Date.now(),
+  });
+};
+
+/* const save = async () => {
   try {
     loading.value = true;
     const data = {
@@ -62,7 +85,7 @@ const save = async () => {
   } finally {
     loading.value = false;
   }
-};
+}; */
 
 const goListPage = () => router.push({ name: 'PostList' });
 </script>
