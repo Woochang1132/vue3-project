@@ -23,7 +23,7 @@ export const useAxios = (url, config = {}, options = {}) => {
   };
 
   const { params } = config;
-  const execute = () => {
+  const execute = body => {
     data.value = null;
     error.value = null;
     loading.value = true;
@@ -31,6 +31,7 @@ export const useAxios = (url, config = {}, options = {}) => {
       ...defaultConfig,
       ...config,
       params: unref(params),
+      data: typeof body === 'object' ? body : {},
     })
       .then(res => {
         response.value = res;
@@ -62,5 +63,6 @@ export const useAxios = (url, config = {}, options = {}) => {
     data,
     error,
     loading,
+    execute,
   };
 };

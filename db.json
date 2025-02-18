@@ -59,6 +59,18 @@
       "content": null,
       "createdAt": 1739781188703,
       "id": 20
+    },
+    {
+      "title": "글쓰기를 새롭게 진행합니다.",
+      "content": null,
+      "createdAt": 1739846189123,
+      "id": 22
+    },
+    {
+      "title": "글쓰기 내용을 채웁니다.",
+      "content": "글쓰기 내용을 채웁니다.",
+      "createdAt": 1739846246039,
+      "id": 23
     }
   ]
 }

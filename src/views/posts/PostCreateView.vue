@@ -5,7 +5,7 @@
     <AppError v-if="error" :message="error.message" />
     <PostForm
       v-model:title="form.title"
-      v-model:conent="form.content"
+      v-model:content="form.content"
       @submit.prevent="save"
     >
       <template #actions>
