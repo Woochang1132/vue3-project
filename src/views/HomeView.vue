@@ -27,7 +27,7 @@ export default {
 import { useRouter } from 'vue-router';
 // import AppGrid from '@/components/app/AppGrid.vue';
 // import AppCard from '@/components/app/AppCard.vue';
-import { reactive, ref, toRef, toRefs } from 'vue';
+import { reactive, ref, toRefs } from 'vue';
 
 const router = useRouter();
 const goAboutPage = () => {
