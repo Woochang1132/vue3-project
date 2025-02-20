@@ -11,6 +11,9 @@
 
     <AppLoading v-if="loading"></AppLoading>
     <AppError v-else-if="error" :message="error.message"></AppError>
+    <template v-else-if="!isExist">
+      <p class="text-center py-5 text-muted">No Results</p>
+    </template>
     <template v-else>
       <AppGrid :items="posts">
         <template v-slot="{ item }">
@@ -82,6 +85,7 @@ const {
   error,
   loading,
 } = useAxios('/posts', { params });
+const isExist = computed(() => posts.value && posts.value.length > 0);
 // pagination
 const totalCount = computed(
   () => response.value?.headers['x-total-count'] || 0,
