@@ -15,7 +15,7 @@
       <p class="text-center py-5 text-muted">No Results</p>
     </template>
     <template v-else>
-      <AppGrid :items="posts">
+      <AppGrid :items="posts" col-class="col-12 col-md-6 col-lg-4">
         <template v-slot="{ item }">
           <PostItem
             :title="item.title"

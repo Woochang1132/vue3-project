@@ -8,9 +8,6 @@
     <AppGrid :items="items" v-slot="{ item }" col-class="col-6">
       <AppCard>{{ item }}</AppCard>
     </AppGrid>
-    <hr class="my-4" />
-    <h2>{{ position }}</h2>
-    <h2>x: {{ x }}, y: {{ y }}</h2>
   </div>
 </template>
 
